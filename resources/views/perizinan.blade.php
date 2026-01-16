@@ -61,7 +61,7 @@
                                     @csrf
                                     <button class="btn btn-sm btn-success"
                                             onclick="return confirm('Setujui perizinan ini?')">
-                                        ✔ Setujui
+                                        Setujui
                                     </button>
                                 </form>
 
@@ -72,7 +72,7 @@
                                     @csrf
                                     <button class="btn btn-sm btn-danger"
                                             onclick="return confirm('Tolak perizinan ini?')">
-                                        ✖ Tolak
+                                        Tolak
                                     </button>
                                 </form>
 
