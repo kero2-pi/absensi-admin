@@ -57,7 +57,7 @@ input.addEventListener('keyup', function () {
         .then(html => {
             table.innerHTML = html;
         });
-    }, 100); // debounce
+    }, 100); 
 });
 </script>
 @endsection
