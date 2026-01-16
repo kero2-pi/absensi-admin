@@ -5,7 +5,7 @@
 
     {{-- HEADER --}}
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3>🕒 Data Shift Kerja</h3>
+        <h3>Data Shift Kerja</h3>
     </div>
 
     {{-- FLASH MESSAGE --}}
@@ -68,7 +68,7 @@
                             <td>
                                 <button type="submit"
                                         class="btn btn-success btn-sm w-100">
-                                    💾 Simpan
+                                    Simpan
                                 </button>
                             </td>
                         </tr>
