@@ -85,7 +85,7 @@ class UserController extends Controller
         'instansi'   => $request->instansi,
         'status'     => $request->status,
         'mode_kerja' => $request->mode_kerja,
-        'shift_id'   => $shiftId, // ✅ DIJAMIN ADA
+        'shift_id'   => $shiftId, 
     ]);
 
     return redirect()->route('users.index')
