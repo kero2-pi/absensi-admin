@@ -36,7 +36,6 @@ class PerizinanController extends Controller
 
         return response()->json([
             'message' => 'Pengajuan perizinan berhasil dikirim',
-            'data'    => $perizinan,
         ], 201);
     }
 }

@@ -35,7 +35,6 @@ class UserController extends Controller
     }
 
 
-    // Tampilkan form tambah user
     public function create()
     {
         $instansi = Instansi::all();
@@ -47,7 +46,6 @@ class UserController extends Controller
         ]);
     }
 
-    // Simpan user baru
     public function store(Request $request)
 {
     $request->validate([

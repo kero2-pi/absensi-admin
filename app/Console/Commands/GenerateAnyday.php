@@ -5,24 +5,23 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\User;
 use App\Models\Kehadiran;
-use App\Models\Libur;
 use Carbon\Carbon;
 
-class GenerateDailyKehadiran extends Command
+class GenerateAnyday extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'kehadiran:generate {date?}';
+    protected $signature = 'kehadiran:generate-anyday {date?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate kehadiran harian untuk semua user berdasarkan shift, skip weekend & hari libur';
+    protected $description = 'Generate kehadiran harian untuk semua user tanpa cek weekend dan hari libur';
 
     /**
      * Execute the console command.
@@ -33,19 +32,6 @@ class GenerateDailyKehadiran extends Command
         $tanggal = $this->argument('date')
             ? Carbon::parse($this->argument('date'))->toDateString()
             : Carbon::today()->toDateString();
-
-        // Skip weekend
-        $hari = Carbon::parse($tanggal)->dayOfWeek; // 0=Sun, 6=Sat
-        if ($hari == Carbon::SATURDAY || $hari == Carbon::SUNDAY) {
-            $this->info("Tanggal {$tanggal} adalah weekend, kehadiran tidak digenerate.");
-            return 0;
-        }
-
-        // Skip hari libur
-        if (Libur::where('tanggal', $tanggal)->exists()) {
-            $this->info("Tanggal {$tanggal} adalah hari libur, kehadiran tidak digenerate.");
-            return 0;
-        }
 
         // Ambil semua user beserta shift
         $users = User::with('shift')->get();
@@ -72,7 +58,7 @@ class GenerateDailyKehadiran extends Command
             );
         }
 
-        $this->info("Kehadiran tanggal {$tanggal} berhasil digenerate untuk semua user.");
-        return 0;
+        $this->info("Kehadiran tanggal {$tanggal} berhasil digenerate (tanpa cek weekend/libur).");
+        return Command::SUCCESS;
     }
 }

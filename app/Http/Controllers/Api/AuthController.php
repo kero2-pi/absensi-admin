@@ -36,7 +36,6 @@ class AuthController extends Controller
 
         return response()->json([
             'token' => $token,
-            'user'  => $user,
         ]);
     }
 
@@ -45,9 +44,24 @@ class AuthController extends Controller
      * Ambil data user yang login
      */
     public function me(Request $request)
-    {
-        return response()->json($request->user());
-    }
+{
+    $user = $request->user()->load('shift');
+
+    return response()->json([
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'instansi' => $user->instansi, // null jika tidak ada
+        'status' => $user->status,
+        'mode_kerja' => $user->mode_kerja,
+        'shift' => $user->shift ? [
+            'nama_shift' => $user->shift->nama_shift,
+            'mulai' => $user->shift->mulai,
+            'selesai' => $user->shift->selesai,
+        ] : null,
+    ]);
+}
+
 
     /**
      * Logout API user

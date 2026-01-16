@@ -10,11 +10,9 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        //$holidays = Holiday::orderBy('tanggal')->get();
         $shifts   = Shift::orderBy('nama_shift')->get();
 
         return view('settings.index', compact( 'shifts'));
-        //'holidays'
     }
 
     public function shifts()
